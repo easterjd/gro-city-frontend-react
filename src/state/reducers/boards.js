@@ -1,6 +1,4 @@
-import boardActions from '../actions/boards'
-
-const {
+import {
     BOARDS_PENDING,
     BOARDS_SUCCESS,
     BOARDS_FAIL,
@@ -22,7 +20,7 @@ const {
     REMOVE_PLANT_PENDING,
     REMOVE_PLANT_SUCCESS,
     REMOVE_PLANT_FAIL
-} = boardActions
+} from '../actions/boards'
 
 let INITIAL_STATE = {
     isLoading: false,

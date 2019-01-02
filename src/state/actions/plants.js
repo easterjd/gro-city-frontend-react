@@ -1,4 +1,6 @@
-import plantsModel from '../models/plants'
+import {
+    getPage
+} from '../models/plants'
 import plants from '../reducers/plants';
 
 export const PLANT_PAGE_PENDING = 'PLANT_PAGE_PENDING'
@@ -13,7 +15,7 @@ export const getPlantsPage = (page, body) => {
     return async (dispatch) => {
         try {
             dispatch({ type: PLANT_PAGE_PENDING })
-            const response = await plantsModel.getPage(page, body)
+            const response = await getPage(page, body)
             dispatch({ type: PLANT_PAGE_SUCCESS, payload: response.data })
         } catch (e) {
             dispatch({ type: PLANT_PAGE_FAIL, payload: e })

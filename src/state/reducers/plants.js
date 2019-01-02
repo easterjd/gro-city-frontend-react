@@ -1,6 +1,4 @@
-import plantActions from '../actions/plants'
-
-const {
+import {
     PLANT_PAGE_PENDING,
     PLANT_PAGE_SUCCESS,
     PLANT_PAGE_FAIL,
@@ -8,7 +6,7 @@ const {
     PAGE_RESET,
     SEARCH_CHANGE,
     SEARCH_RESET
-} = plantActions
+} from '../actions/plants'
 
 let baseSearch = {
     scientific_name: "",

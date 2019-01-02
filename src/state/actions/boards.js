@@ -1,4 +1,12 @@
-import boardsModel from '../models/boards'
+import {
+    getBoards as getBoardsReq,
+    getPlants as getPlantsReq,
+    create,
+    edit,
+    deleteBoard as deleteBoardReq,
+    addPlant as addPlantReq,
+    deletePlant as deletePlantReq
+} from '../models/boards'
 
 export const BOARDS_PENDING = 'BOARDS_PENDING'
 export const BOARDS_SUCCESS = 'BOARDS_SUCCESS'
@@ -26,7 +34,7 @@ export const getBoards = async () => {
     return async (dispatch) => {
         try {
             dispatch({ type: BOARDS_PENDING })
-            const response = await boardsModel.getBoards()
+            const response = await getBoardsReq()
             dispatch({ type: BOARDS_SUCCESS, payload: response.data })
         } catch (e) {
             dispatch({ type: BOARDS_FAIL, payload: e })
@@ -38,7 +46,7 @@ export const getPlants = async (boardId) => {
     return async (dispatch) => {
         try {
             dispatch({ type: VIEW_BOARD_PENDING })
-            const response = await boardsModel.getPlants(boardId)
+            const response = await getPlantsReq(boardId)
             dispatch({ type: VIEW_BOARD_SUCCESS, payload: response.data })
         } catch (e) {
             dispatch({ type: VIEW_BOARD_FAIL, payload: e })
@@ -50,7 +58,7 @@ export const createBoard = async (body) => {
     return async (dispatch) => {
         try {
             dispatch({ type: CREATE_BOARD_PENDING })
-            await boardsModel.create(body)
+            await create(body)
             dispatch({ type: CREATE_BOARD_SUCCESS })
         } catch (e) {
             dispatch({ type: CREATE_BOARD_FAIL, payload: e })
@@ -62,7 +70,7 @@ export const editBoard = async (boardId, body) => {
     return async (dispatch) => {
         try {
             dispatch({ type: EDIT_BOARD_PENDING })
-            await boardsModel.edit(boardId, body)
+            await edit(boardId, body)
             dispatch({ type: EDIT_BOARD_SUCCESS })
         } catch (e) {
             dispatch({ type: EDIT_BOARD_FAIL, payload: e })
@@ -74,7 +82,7 @@ export const deleteBoard = async (boardId) => {
     return async (dispatch) => {
         try {
             dispatch({ type: DELETE_BOARD_PENDING })
-            await boardsModel.deleteBoard(boardId)
+            await deleteBoardReq(boardId)
             dispatch({ type: DELETE_BOARD_SUCCESS })
         } catch (e) {
             dispatch({ type: DELETE_BOARD_FAIL, payload: e })
@@ -86,7 +94,7 @@ export const addPlant = async (boardId, plantId) => {
     return async (dispatch) => {
         try {
             dispatch({ type: ADD_PLANT_PENDING })
-            await boardsModel.addPlant(boardId, plantId)
+            await addPlantReq(boardId, plantId)
             dispatch({ type: ADD_PLANT_SUCCESS })
         } catch (e) {
             dispatch({ type: ADD_PLANT_FAIL, payload: e })
@@ -98,7 +106,7 @@ export const deletePlant = async (boardId, plantId) => {
     return async (dispatch) => {
         try {
             dispatch({ type: REMOVE_PLANT_PENDING })
-            await boardsModel.deletePlant(boardId, plantId)
+            await deletePlantReq(boardId, plantId)
             dispatch({ type: REMOVE_PLANT_SUCCESS })
         } catch (e) {
             dispatch({ type: REMOVE_PLANT_FAIL, payload: e })
