@@ -10,7 +10,7 @@ import {
     USER_REGISTER_FAIL
 } from '../actions/auth'
 
-let INITIAL_STATE = {
+const INITIAL_STATE = {
     isLoading: false,
 	isLoggedIn: false,
     showLoginError: false,
@@ -39,5 +39,7 @@ export default (state=INITIAL_STATE, action) => {
             return { ...state, isLoading: false, isLoggedIn: true, showRegisterError: false }
         case USER_REGISTER_FAIL:
             return { ...state, isLoading: false, isLoggedIn: false, showRegisterError: true, regError: action.payload }
+        default:
+            return state
     }
 }

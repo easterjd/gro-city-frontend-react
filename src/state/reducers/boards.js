@@ -73,5 +73,7 @@ export default (state=INITIAL_STATE, action) => {
             return { ...state, isLoading: false, error: null }
         case REMOVE_PLANT_FAIL:
             return { ...state, isLoading: false, error: action.payload }
+        default:
+            return state
     }
 }

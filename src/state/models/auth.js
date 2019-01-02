@@ -11,3 +11,7 @@ export const login = async (body) => {
 export const register = (body) => {
     return request('/users/register', 'post', body)
 }
+
+export const logout = () => {
+    
+}

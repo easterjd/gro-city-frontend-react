@@ -1,4 +1,9 @@
-import authModel from './models/auth'
+import { 
+    authenticatedRequest,
+    login as loginReq,
+    register as registerReq,
+    logout as logoutReq
+} from '../models/auth'
 
 export const USER_LOGIN_PENDING = 'USER_LOGIN_PENDING'
 export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
@@ -14,7 +19,7 @@ export const checkLoggedIn = () => {
     return async (dispatch) => {
 		try {
 			dispatch({ type: USER_LOGIN_PENDING });
-			const response = await authModel.authenticatedRequest();
+			const response = await authenticatedRequest();
 			dispatch({ type: USER_LOGIN_SUCCESS });
 		}
 		catch (err) {
@@ -27,7 +32,7 @@ export const login = (body) => {
     return async (dispatch) => {
         try {
             dispatch({ type: USER_LOGIN_PENDING });
-            const response = await authModel.login(body)
+            const response = await loginReq(body)
             dispatch({ type: USER_LOGIN_SUCCESS })
         } catch (err) {
             dispatch({ type: USER_LOGIN_FAIL, payload: err })
@@ -39,7 +44,7 @@ export const register = (body) => {
     return async (dispatch) => {
         try {
             dispatch({ type: USER_REGISTER_PENDING })
-            const response = await authModel.register(body)
+            const response = await registerReq(body)
             dispatch({ type: USER_REGISTER_SUCCESS })
         } catch (err) {
             dispatch({ type: USER_REGISTER_FAIL, payload: err})
@@ -50,7 +55,7 @@ export const register = (body) => {
 export const logout = () => {
     return (dispatch) => {
         dispatch({ type: USER_LOGOUT_PENDING })
-        authModel.logout()
+        logoutReq()
         dispatch({ type: USER_LOGOUT_SUCCESS })
     }
 }

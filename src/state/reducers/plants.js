@@ -51,5 +51,7 @@ export default (state=INITIAL_STATE, action) => {
             return { ...state, searchState: action.payload }
         case SEARCH_RESET:
             return { ...state, searchState: baseSearch }
+        default:
+            return state
     }
 }
